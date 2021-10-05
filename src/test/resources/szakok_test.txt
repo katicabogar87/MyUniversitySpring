@@ -1,0 +1,3 @@
+informatikus könyvtáros;DIG-001;Digitális bölcsész kompetenciák;G;4;2;NULL
+informatikus könyvtáros;IKT19-101;Bevezetés a könyvtár- és információtudományba;K;1;4;NULL
+japán;JAP-104;Mai japán nyelvképzés 4.;G;2;2;JAP-101

@@ -1,0 +1,5 @@
+történelem;TÖR-271;Jelenkori magyar történelem 1.;K;5;3;NULL
+történelem;TÖR-272;Jelenkori magyar történelem 2.;G;5;2;TÖR-271
+magyar;MNY16-221;Kommunikáció szóban és írásban;G;2;3;XKO16-106
+magyar;MNY11-233;Finnugrisztika;G;2;3;NULL
+magyar;MNY11-200;Helyesírás (alapvizsga;V;1;0;NULL
