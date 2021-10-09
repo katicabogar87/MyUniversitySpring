@@ -35,11 +35,13 @@ public class ProcessTasks {
         System.out.println("--------------task 2.------------------");
         //noRequirements.createCoursesNoRequirement(majors);
         //System.out.println(noRequirements.createCoursesNoRequirement(majors).entrySet());
-        System.out.println(noRequirements.createCoursesNoRequirement(majors).entrySet().size());
+        System.out.println(noRequirements.createCoursesNoRequirement(majors).entrySet());
 
         System.out.println("--------------task 3.------------------");
         //listChosenType.findTypeInList((List<Course>) majors.keySet().toArray()[1], CourseType.G);
-        System.out.println(listChosenType.findTypeInList(majors.get("magyar"), CourseType.G));
+        String key = (String) majors.keySet().toArray()[0];
+        System.out.println(key);
+        System.out.println(listChosenType.findTypeInList(majors.get(key), CourseType.G));
 
         System.out.println("--------------task 4.------------------");
         //mostRequirement.findMostRequirementCourses(majors);

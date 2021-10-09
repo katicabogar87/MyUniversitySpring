@@ -1,7 +1,9 @@
 package edu.progmatic.backend.MyUniversitySpring.module;
 
+import edu.progmatic.backend.MyUniversitySpring.config.ConfigReader;
 import edu.progmatic.backend.MyUniversitySpring.model.Course;
 import edu.progmatic.backend.MyUniversitySpring.model.CourseType;
+import edu.progmatic.backend.MyUniversitySpring.testHelper.CompareHelper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-@SpringBootTest
+
+@SpringBootTest // (classes = {ListChosenType.class, CourseHandler.class, ConfigReader.class})
 class ListChosenTypeTest {
 
     @Autowired
@@ -31,21 +34,7 @@ class ListChosenTypeTest {
         List<Course> expectedCourseList =  List.of(course2, course3);  // G type
 
         Assertions.assertTrue(listChosenType.findTypeInList(inputCourseList, CourseType.EF).isEmpty());
-        Assertions.assertTrue(compareLists(expectedCourseList,
+        Assertions.assertTrue(CompareHelper.compareLists(expectedCourseList,
                                             listChosenType.findTypeInList(inputCourseList, CourseType.G)));
-
-
     }
-
-    public <T> boolean compareLists(List <T> expected, List <T> actual){
-        if(expected.size()!=actual.size()){return false;}
-
-        for (int i = 0; i < expected.size(); i++) {
-            if(!expected.get(i).equals(actual.get(i))){
-                return false;
-            }
-        }
-        return true;
-    }
-
 }

@@ -1,6 +1,8 @@
 package edu.progmatic.backend.MyUniversitySpring.module;
 
+import edu.progmatic.backend.MyUniversitySpring.config.ConfigReader;
 import edu.progmatic.backend.MyUniversitySpring.model.Course;
+import edu.progmatic.backend.MyUniversitySpring.testHelper.CompareHelper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@SpringBootTest //(classes = {MostRequirement.class, CourseHandler.class, ConfigReader.class})
 class MostRequirementTest {
 
     @Autowired
@@ -66,15 +68,12 @@ class MostRequirementTest {
     public void findMostRequirementCoursesTest(){
 
         List<Course> expected = getInputCourseList3();
-        Assertions.assertTrue(compareCourseLists(expected, mostRequirement.findMostRequirementCourses(getInputMap())));
+        Assertions.assertTrue(CompareHelper.compareCourseLists(expected, mostRequirement.findMostRequirementCourses(getInputMap())));
 
         Map<String, List<Course>> nullInputMap= new HashMap<>();
         Assertions.assertTrue(mostRequirement.findMostRequirementCourses(nullInputMap).isEmpty());
 
-
     }
-
-
 
     @Test
     public void maxSizeInMapTest(){
@@ -96,42 +95,4 @@ class MostRequirementTest {
         List<Course> nullInputList= new ArrayList<>();
         Assertions.assertEquals(-1, mostRequirement.getMaxSizeInList(nullInputList));
     }
-
-
-    public <T> boolean compareLists(List <T> expected, List <T> actual){
-        if(expected.size()!=actual.size()){return false;}
-
-        for (int i = 0; i < expected.size(); i++) {
-            if(!expected.get(i).equals(actual.get(i))){
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-
-    public  boolean compareCourseLists(List <Course> expected, List <Course> actual){
-        if(expected.size()!=actual.size()){return false;}
-
-        for (int i = 0; i < expected.size(); i++) {
-            if(!(compareCourses(expected.get(i), (actual.get(i))))){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean compareCourses(Course expected, Course actual){
-        return expected.getMajor().equals(actual.getMajor()) ||
-                expected.getCourseName().equals(actual.getCourseName()) ||
-                expected.getCourseCode().equals(actual.getCourseCode()) ||
-                expected.getCourseType().equals(actual.getCourseType()) ||
-                expected.getCredit() == actual.getCredit() ||
-                compareLists(expected.getSemesteres(), actual.getSemesteres()) ||
-                compareLists(expected.getRequirements(), actual.getRequirements());
-    }
-
-
-
 }

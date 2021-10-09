@@ -1,5 +1,6 @@
 package edu.progmatic.backend.MyUniversitySpring.util;
 
+import edu.progmatic.backend.MyUniversitySpring.testHelper.CompareHelper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +21,8 @@ class InfoSplitterTest {
        List<String> multipleList = List.of("ANG-455", "ANG-445*", "ANG-435");
 
        Assertions.assertTrue(InfoSplitter.splitRequirements(nullInput).isEmpty());
-       Assertions.assertTrue(compareLists(sigleList, InfoSplitter.splitRequirements(singleInput)));
-       Assertions.assertTrue(compareLists(multipleList, InfoSplitter.splitRequirements(multipleInput)));
+       Assertions.assertTrue(CompareHelper.compareLists(sigleList, InfoSplitter.splitRequirements(singleInput)));
+       Assertions.assertTrue(CompareHelper.compareLists(multipleList, InfoSplitter.splitRequirements(multipleInput)));
 
    }
 
@@ -35,20 +36,11 @@ class InfoSplitterTest {
         List<Integer> multipleList = List.of(2,3,4);
 
 
-        Assertions.assertTrue(compareLists(sigleList, InfoSplitter.splitSemesters(singleInput)));
-        Assertions.assertTrue(compareLists(multipleList, InfoSplitter.splitSemesters(multipleInput)));
+        Assertions.assertTrue(CompareHelper.compareLists(sigleList, InfoSplitter.splitSemesters(singleInput)));
+        Assertions.assertTrue(CompareHelper.compareLists(multipleList, InfoSplitter.splitSemesters(multipleInput)));
 
     }
 
-   public <T> boolean compareLists(List <T> expected, List <T> actual){
-       if(expected.size()!=actual.size()){return false;}
 
-       for (int i = 0; i < expected.size(); i++) {
-           if(!expected.get(i).equals(actual.get(i))){
-               return false;
-           }
-       }
-       return true;
-   }
 
 }

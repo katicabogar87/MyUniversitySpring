@@ -1,6 +1,8 @@
+
 package edu.progmatic.backend.MyUniversitySpring.module;
 
 import edu.progmatic.backend.MyUniversitySpring.model.Course;
+import edu.progmatic.backend.MyUniversitySpring.testHelper.CompareHelper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,45 +47,8 @@ class NoRequirementsTest {
         expectedMap.put(course4.getMajor(), expectedCourseList2);
 
 
-        Assertions.assertTrue(compareMaps(expectedMap, noRequirements.createCoursesNoRequirement(inputMap)));
-
-
+        Assertions.assertTrue(CompareHelper.compareMajorMaps(expectedMap, noRequirements.createCoursesNoRequirement(inputMap)));
 
     }
-
-    public boolean compareMaps(Map<String, List<Course>> expected, Map<String, List<Course>> actual) {
-
-        if (expected.size() != actual.size()) {
-            System.out.println(expected.size());
-            System.out.println(actual.size());
-            return false;
-        }
-
-        for (int i = 0; i < expected.keySet().size(); i++) {
-            {
-                if (!expected.keySet().toArray()[i].equals(actual.keySet().toArray()[i])) {
-                    System.out.println(expected.keySet().toArray()[i]);
-                    System.out.println(actual.keySet().toArray()[i]);
-
-                    return false;
-                }
-            }
-
-        }
-
-        return true;
-    }
-
-    public <T> boolean compareLists(List <T> expected, List <T> actual){
-        if(expected.size()!=actual.size()){return false;}
-
-        for (int i = 0; i < expected.size(); i++) {
-            if(!expected.get(i).equals(actual.get(i))){
-                return false;
-            }
-        }
-        return true;
-    }
-
 
 }

@@ -1,3 +1,4 @@
+/*
 package edu.progmatic.backend.MyUniversitySpring;
 
 import org.junit.jupiter.api.Test;
@@ -11,3 +12,4 @@ class MyUniversitySpringApplicationTests {
 	}
 
 }
+*/

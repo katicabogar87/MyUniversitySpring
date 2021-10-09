@@ -1,7 +1,10 @@
 
+
 package edu.progmatic.backend.MyUniversitySpring.module;
 
+import edu.progmatic.backend.MyUniversitySpring.config.ConfigReader;
 import edu.progmatic.backend.MyUniversitySpring.model.Course;
+import edu.progmatic.backend.MyUniversitySpring.testHelper.CompareHelper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +15,8 @@ import java.util.Map;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-@SpringBootTest
+
+@SpringBootTest//(classes = {CourseHandler.class, ConfigReader.class})
 class CourseHandlerTest {
     @Autowired
     CourseHandler courseHandler;
@@ -53,52 +57,7 @@ class CourseHandlerTest {
         expected.put(course1.getMajor(), List.of(course1, course2));
         expected.put(course3.getMajor(), List.of(course3));
 
-        assertTrue(compareMaps(expected, courseHandler.createMajors()));
+        assertTrue(CompareHelper.compareMajorMaps(expected, courseHandler.createMajors()));
 
     }
-
-
-    public boolean compareMaps(Map<String, List<Course>> expected, Map<String, List<Course>> actual) {
-
-        if (expected.size() != actual.size()) {
-            System.out.println(expected.size());
-            System.out.println(actual.size());
-            return false;
-        }
-
-        for (int i = 0; i < expected.keySet().size(); i++) {
-            {
-                if (!expected.keySet().toArray()[i].equals(actual.keySet().toArray()[i])) {
-                    System.out.println(expected.keySet().toArray()[i]);
-                    System.out.println(actual.keySet().toArray()[i]);
-
-                    return false;
-                }
-            }
-
-        }
-/*
-
-        for(Map.Entry<String,List<Course>> entry : expected.entrySet()) {
-            if (!compareLists(entry.getValue(), actual.get(entry.getKey()))) {
-                return false;
-            }
-        }
-*/
-
-
-        return true;
-    }
-
-    public <T> boolean compareLists(List <T> expected, List <T> actual){
-        if(expected.size()!=actual.size()){return false;}
-
-        for (int i = 0; i < expected.size(); i++) {
-            if(!expected.get(i).equals(actual.get(i))){
-                return false;
-            }
-        }
-        return true;
-    }
-
 }
